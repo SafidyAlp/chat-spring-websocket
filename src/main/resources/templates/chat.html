@@ -117,7 +117,7 @@
 	<div class="chat-container">
 		<div class="chat-header">💬 Chat de Groupe</div>
 		<div class="chat-body" id="chatBody">
-			<div class="message">Bienvenue dans le chat !</div>
+			<div class="message text-center text-muted small" id="welcomeMessage"></div>
 		</div>
 		<div class="chat-footer">
 			<input type="text" id="messageInput" placeholder="Écrire un message..." class="form-control">
@@ -143,6 +143,11 @@
 			}
 
 			let stompClient = null;
+
+			const welcomeMessage = document.getElementById("welcomeMessage");
+			const options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+			const today = new Date().toLocaleDateString('fr-FR', options);
+			welcomeMessage.textContent = `${today}`;
 
 			function connect() {
 				const socket = new SockJS('/ws');
